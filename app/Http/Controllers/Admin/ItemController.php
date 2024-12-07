@@ -23,7 +23,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('admin.items.create', compact('items'));
+        return view('admin.items.create', ['items'=> Item::all()]);
     }
 
     /**
