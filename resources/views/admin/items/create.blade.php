@@ -17,61 +17,64 @@
                                 Posts List
                             </div>
                             <div class="card-body">
+                                <form action="{{route('backend.items.store')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
                                         <table class="table table-bordered">
                                         <div class="mb-3">
-                                        <label for="codeno" class="form-label">Code No</label>
-                                        <input type="text" class="form-control" id="codeno" placeholder="">
+                                        <label for="code_no" class="form-label">Code No</label>
+                                        <input type="text" class="form-control" id="code_no" name="code_no" placeholder="">
                                         </div>
 
                                         <div class="mb-3">
                                         <label for="name" class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="name" placeholder="">
+                                        <input type="text" class="form-control" id="name" placeholder="" name="name">
                                         </div>
 
                                         <div class="col-md-12 mb-3">
                                         <label for="image" class="form-label">Image</label>
-                                        <input class="form-control" type="file" id="image" multiple>
+                                        <input class="form-control" type="file" id="image" name="image">
                                         </div>
                                         </div>
 
                                         <div class="mb-3">
                                         <label for="price" class="form-label">Price</label>
-                                        <input type="text" class="form-control" id="price" placeholder="">
+                                        <input type="text" class="form-control" id="price" name="price" >
                                         </div>
 
                                         <div class="mb-3">
                                         <label for="discount" class="form-label">Discount</label>
-                                        <input type="text" class="form-control" id="discount" placeholder="">
+                                        <input type="text" class="form-control" id="discount" name="discount">
                                         </div>
 
                                         <div class="col-md-12 mb-3">
-                                            <label for="instock" class="form-label">InStock</label>
-                                            <select class="form-select form-select-sm" aria-label="instock">
-                                            <option selected>Yes</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            <label for="in_stock" class="form-label">InStock</label>
+                                            <select class="form-select form-select-sm" aria-label="in_stock" name="in_stock" id="in_stock">
+                                            <option value="1">Yes</option>
+                                            <option value="0">No</option>
+                                            
                                             </select>
                                         </div>
                                         </div>
                                         <div class="col-md-12 mb-3">
-                                            <label for="category" class="form-label">Category</label>
-                                            <select class="form-select form-select-sm" aria-label="category">
+                                            <label for="category_id" class="form-label">Category</label>
+                                            <select class="form-select form-select-sm" aria-label="category_id" name="category_id">
                                             <option selected>Choose Category</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            @foreach($categories as $category)
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
                                             </select>
                                             </div>
 
                                         <div class="col-md-12 mb-3">
                                         <label for="description" class="form-label">Description</label>
-                                        <textarea class="form-control" id="description" rows="2"></textarea>
+                                        <textarea class="form-control" id="description" rows="2" name="description"></textarea>
                                         </div>
                                     </div>
-                                    </form>
-                                    <button class="w-100 btn btn-primary" type="button">Save</button>
+                                   
+                                    <button class="w-100 btn btn-primary" type="submit">Save</button>
                                     </div>
+                                    
+                                </form>
                                 </div>
                                 </table>
                          
