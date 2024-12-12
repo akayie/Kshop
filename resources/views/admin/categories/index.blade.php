@@ -8,7 +8,8 @@
                     </div>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Categories</li>
+                            <li class="breadcrumb-item"><a href="{{route('backend.categories.index')}}">Categories</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('backend.categories.create')}}">Create Category</a></li>
                         </ol>
                         
                         <div class="card mb-4">

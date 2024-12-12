@@ -7,8 +7,8 @@
                     </div>
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Payments</li>
-                            <li class="breadcrumb-item active">Payments Create</li>
+                            <li class="breadcrumb-item"><a href="{{route('backend.payments.index')}}">Payments</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('backend.payments.create')}}">Create Payment</a></li>
                         </ol>
                         
                         <div class="card mb-4">
@@ -20,20 +20,22 @@
                                 <form action="{{route('backend.payments.store')}}" method="post" enctype="multipart/form-data">
                                     @csrf
                                         
-                                    <div class="col-md-12 mb-3">
-                                            <label for="name" class="form-label">Name</label>
-                                            <select class="form-select form-select-sm" aria-label="name" name="name">
-                                            <option selected>Choose Payment</option>
-                                            @foreach($payments as $payment)
-                                            <option value="{{$payment->name}}">{{$payment->name}}</option>
-                                            @endforeach
-                                            </select>
-                                    </div>
-
-                                        <div class="col-md-12 mb-3">
-                                        <label for="logo" class="form-label">Logo</label>
-                                        <input class="form-control" type="file" id="logo" name="logo">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Payment</label>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="" name="name">
+                                        @error('name')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
                                         </div>
+                                        <div class="col-md-12 mb-3">
+                                        <label for="logo" class="form-label">Image</label>
+                                        <input type="file" accept="image/*" class="form-control @error('image') is-invalid @enderror" id="logo" name="logo">
+                                       
+                                         @error('image')
+                                        <div class="invalid-feedback">{{$message}}</div>
+                                        @enderror
+                                        </div>
+
                                       
                                     <button class="w-100 btn btn-primary" type="submit">Save</button>
                                     </div>
