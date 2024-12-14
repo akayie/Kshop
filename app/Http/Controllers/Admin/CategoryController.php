@@ -34,6 +34,14 @@ class CategoryController extends Controller
     {
        // dd($request);
        $categories=Category::create($request->all());
+       
+        //file upload
+        $file_name = time().'.'.$request->image->extension();//12341234.png
+
+        $upload = $request->image->move(public_path('images/categories/'),$file_name); //upload to folder
+        if($upload){
+            $categories->image = "/images/categories/".$file_name; //upload to database
+        }
        $categories->save();
        return redirect()->route('backend.categories.index');
     }

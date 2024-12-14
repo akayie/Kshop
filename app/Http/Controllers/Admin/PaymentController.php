@@ -34,8 +34,18 @@ class PaymentController extends Controller
     {
     //      dd($request);
        $payments=Payment::create($request->all());
+       {
+        
+        //file upload
+        $file_name = time().'.'.$request->logo->extension();//12341234.png
+
+        $upload = $request->logo->move(public_path('images/payments/'),$file_name); //upload to folder
+        if($upload){
+            $payments->logo = "/images/payments/".$file_name; //upload to database
+        }
        $payments->save();
        return redirect()->route('backend.payments.index');
+        }
     }
 
     /**

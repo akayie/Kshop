@@ -23,6 +23,7 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Name</th>
+                                            <th>Logo</th>
                                             <th>#</th>
                                         </tr>
                                     </thead>
@@ -30,6 +31,7 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Name</th>
+                                            <th>Logo</th>
                                             <th>#</th>
                                         </tr>
                                     </tfoot>
@@ -41,7 +43,8 @@
                                        <tr>
                                         <tdtd>
                                         <td>{{$i++}}</td>
-                                        <td>{{$payment->name}}</td>                                  
+                                        <td>{{$payment->name}}</td> 
+                                        <td><img src="{{$payment->logo}}"/></td>                                  
                                         <td>
                                              <a href="" class="btn btn-sm btn-warning">Edit</a>
                                              <a href="" class="btn btn-sm btn-danger">Delete</a>
