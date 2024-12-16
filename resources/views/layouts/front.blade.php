@@ -40,6 +40,30 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                         </button>
                     </form>
+                    @guest
+                    <a href="/login" class="btn mx-3">Login</a>
+                    <a href="/register" class="btn btn-dark">Register</a>
+                    @else
+                    <div class="dropdown mx-3">
+                        <a href="#" class="text-decoration-none text-dark dropdown-toggle" data-bs-toggle="dropdown">
+                        {{Auth::user()->name}}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    @endif
                 </div>
             </div>
         </nav>
