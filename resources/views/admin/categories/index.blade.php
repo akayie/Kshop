@@ -44,7 +44,7 @@
                                         <tdtd>
                                         <td>{{$i++}}</td>
                                         <td>{{$category->name}}</td> 
-                                        <td>{{$category->image}}</td>                                 
+                                        <td><img src="{{$category->image}}" class="w-25 h-25"/></td>                                 
                                         <td>
                                              <a href="" class="btn btn-sm btn-warning">Edit</a>
                                              <a href="" class="btn btn-sm btn-danger">Delete</a>

@@ -44,7 +44,7 @@
                                         <tdtd>
                                         <td>{{$i++}}</td>
                                         <td>{{$payment->name}}</td> 
-                                        <td><img src="{{$payment->logo}}"/></td>                                  
+                                        <td><img src="{{$payment->logo}}"class="w-25 h-25"/></td>                                  
                                         <td>
                                              <a href="" class="btn btn-sm btn-warning">Edit</a>
                                              <a href="" class="btn btn-sm btn-danger">Delete</a>
