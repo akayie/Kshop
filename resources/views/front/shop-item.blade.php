@@ -11,12 +11,18 @@
                         <h1 class="display-5 fw-bolder">{{$item->name}}</h1>
                         <div class="fs-5 mb-5">
                             <!-- <span class="text-decoration-line-through">$45.00</span> -->
-                            <span>{{$item->price}} MMK</span>
+                            @if($item->discount>0)
+                                     <span class="text-decoration-line-through">{{$item->price}}</span>
+                                  {{$item->price-($item->price*($item->discount/100))}}MMK
+                            @else
+                                   {{$item->price}}
+                            @endif
+                            <!-- <span>{{$item->price}} MMK</span> -->
                         </div>
                         <p class="lead">{{$item->description}}</p>
                         <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                            <input class="form-control text-center me-3 qty" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                            <button class="btn btn-outline-dark flex-shrink-0 addToCart" type="button" data-id="{{$item->id}}" data-name="{{$item->name}}" data-price="{{$item->price}}" data-discount="{{$item->discount}}" data-image="{{$item->image}}">
                                 <i class="bi-cart-fill me-1"></i>
                                 Add to cart
                             </button>
@@ -124,7 +130,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#" >Add to cart</a></div>
                             </div>
                         </div>
                     </div>

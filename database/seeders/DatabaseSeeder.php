@@ -11,6 +11,7 @@ use App\Models\Payment;
 use App\Models\Order;
 
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -29,6 +30,8 @@ class DatabaseSeeder extends Seeder
         Item::factory(20)->create();
         Payment::factory(10)->create();
         Order::factory(10)->create();
+        User::factory(10)->create();
+
 
     }
 }

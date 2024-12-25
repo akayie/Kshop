@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Http\Requests\PaymentRequest;
+use App\Http\Requests\PaymentUpdateRequest;
 
 class PaymentController extends Controller
 {
@@ -61,15 +62,36 @@ class PaymentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $payment=Payment::find($id);
+        $payments = Payment::all();
+        return view('admin.payments.edit',compact('payment','payments'));
+   
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PaymentUpdateRequest $request, string $id)
     {
-        //
+        // echo $id;
+        // dd($request);
+        $payment=Payment::find($id);
+        $payment->update($request->all());
+        if($request->hasFile('logo')){
+        //file upload
+        $file_name = time().'.'.$request->logo->extension();//12341234.png
+
+        $upload = $request->logo->move(public_path('logos/payments/'),$file_name); //upload to folder
+        if($upload){
+            $payment->logo = "/logos/payments/".$file_name; //upload to database
+        }
+        }else{
+            $payment->logo=$request->old_logo;
+        }
+
+
+        $payment->save();
+        return redirect()->route('backend.payments.index');
     }
 
     /**
@@ -77,6 +99,9 @@ class PaymentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // echo "<h1>$id<h1>";
+        $payment = Payment::find($id);
+        $payment->delete();
+        return redirect()->route('backend.payments.index');
     }
 }
