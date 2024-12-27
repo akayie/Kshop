@@ -13,6 +13,7 @@ class OrderController extends Controller
        // var_dump($orders);
         $voucher_group = $orders->groupBy('voucher_no')->toArray();//voucher no tu tar tway ko gp phawe p Array change
        // dd($voucher_group);
+       $order_data =[];
        foreach($voucher_group as $voucher) {
         $orders_id=array_column($voucher,'id');//Array htae mhar shi tal item id tway ko u
         // var_dump($orders_id);
@@ -24,6 +25,7 @@ class OrderController extends Controller
     public function orderAccept(){
          $orders = Order::all();
           $voucher_group = $orders->groupBy('voucher_no')->toArray();
+          $order_data =[];
          foreach($voucher_group as $voucher) {
          $orders_id=array_column($voucher,'id');
          $order_data[]= Order::whereIn('id',$orders_id)->where('status','Accept')->first();
@@ -34,6 +36,7 @@ class OrderController extends Controller
     public function orderComplete(){
         $orders = Order::all();
          $voucher_group = $orders->groupBy('voucher_no')->toArray();
+         $order_data =[];
        foreach($voucher_group as $voucher) {
          $orders_id=array_column($voucher,'id');
         $order_data[]= Order::whereIn('id',$orders_id)->where('status','Complete')->first();

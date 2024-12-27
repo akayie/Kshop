@@ -51,7 +51,19 @@
                             <a class="nav-link" href="{{route('backend.dashboard')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Items
+                            </a><a class="nav-link" href="{{route('backend.dashboard')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Categories
+                            </a><a class="nav-link" href="{{route('backend.dashboard')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Payments
                             </a>
+                            @if(Auth::check() && Auth::user()->role == 'Super Admin')
+                            <a class="nav-link" href="{{route('backend.dashboard')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Users
+                            </a>
+                            @endif
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
